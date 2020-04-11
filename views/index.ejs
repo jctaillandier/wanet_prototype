@@ -1,0 +1,45 @@
+<% include ./partials/header  %>
+<div class='ui container main text'>
+    <div>
+        <h1 class='ui header'>Wanet v0.001 Sensor Integration</h1>
+        <h2>Temperature and Humidity Data coming from an esp8266 MCU and DHT11 sensors</h2>
+    </div>
+    <div>
+        
+
+            <table class="ui celled padded table">
+                    <thead>
+                      <tr>
+                        <th class="single line">Measured </th>
+                        <th>Current Value</th>
+                    </tr></thead>
+                    <tbody>
+                      <tr>
+                        <td>
+                          <h2 class="ui center aligned header">Current Temperature: </h2>
+                        </td>
+                        
+                        <td>
+                            <h2 class="ui center aligned header"><span><%= data[0] %></span> <span><%= moment(data[1]).fromNow() %></span> </h2>
+                        </td>
+                      </tr>
+                      
+                      <tr>
+                            <td>
+                              <h2 class="ui center aligned header">Current Humidity: </h2>
+                            </td>
+                            
+                            <td>
+                                <h2 class="ui center aligned header"><span><%= data[2] %></span>%<span><%= moment(data[3]).fromNow() %></span> </h2>
+                            </td>
+                          </tr>
+                    </tbody>
+            </table>
+    </div>
+
+    <form class='ui form' method='GET' action='/'>
+        <button class='ui button primary'>Refresh!</button>
+    </form>
+
+</div>
+    <% include ./partials/footer  %>
