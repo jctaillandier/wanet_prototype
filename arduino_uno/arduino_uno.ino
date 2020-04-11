@@ -28,7 +28,7 @@ String apiKey="I4LFBVYUOOIXT9IB";
 DHT dht(DHTPIN, DHT11);
 
 // connect a flow meter to an interrupt pin (see notes on your Arduino model for pin numbers)
-FlowMeter Meter = FlowMeter(4);// pin 16 (D0)  on nodeMCU
+FlowMeter Meter = FlowMeter(3);// pin 16 (D0)  on nodeMCU
 
 // set the measurement update period to 1s (1000 ms)
 const unsigned long period = 1000;
@@ -45,7 +45,7 @@ void setup()
   Serial.begin(115200);
   dht.begin();
   delay(10);
-  
+  attachInterrupt(INT1, MeterISR, RISING);
   while (is_connected==0){
     Serial.println("AT");
     delay(5000);
@@ -65,6 +65,7 @@ void setup()
 
 void loop(){
     start:
+    delay(period); // for flow sensor
     error=0;
   delay(2000);
   h = dht.readHumidity();
