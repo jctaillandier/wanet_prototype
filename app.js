@@ -13,7 +13,7 @@ var humidity;
 var app = express();
 // var baseUrl = "http://192.168.1.22";
 var data = [];
-
+var water_data = {};
 app.set('view engine', 'ejs');
 
 app.use(bodyparser.urlencoded({extended:true}));
@@ -46,7 +46,25 @@ app.get('/', function(req, res) {
       data[3] = (parsedData2.feeds[0].created_at);
     }
   });
-  res.render('index', {data:data});
+  // Water flow
+  var url2 = 'https://api.thingspeak.com/channels/562202/fields/3.json?api_key=21M15LY0Z6JTQ3RH&results=2';
+  request(url2, function (err, response, body) { 
+    if(err){console.log(err)}
+    else{
+      var parsedData3 = JSON.parse(body);
+      water_data['flow_rate'] = (parsedData3.feeds[0].field3);
+    }
+  });
+  // Water volume total
+  var url2 = 'https://api.thingspeak.com/channels/562202/fields/4.json?api_key=21M15LY0Z6JTQ3RH&results=2';
+  request(url2, function (err, response, body) { 
+    if(err){console.log(err)}
+    else{
+      var parsedData4 = JSON.parse(body);
+      water_data['total_volume'] = (parsedData4.feeds[0].field4);
+    }
+  });
+  res.render('index', {data:data,water_data:water_data});
 });
 
 

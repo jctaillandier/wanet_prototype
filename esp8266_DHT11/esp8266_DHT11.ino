@@ -1,5 +1,5 @@
 
-#include <DHT_U.h>
+
 #include <DHT.h>
 
 // Robo India Tutorial
@@ -10,28 +10,29 @@
 //DHT11 pin 3 not connected
 //DHT11 pin 4 to esp's GND
 
-
-#include <DHT.h>  // Including library for dht
-
 #include <ESP8266WiFi.h>
 
 String apiKey = "I4LFBVYUOOIXT9IB";     //  Enter your Write API key from ThingSpeak
-//!!!!!!!!!!!!!!!!!1 Hide this at some point
-
-
 const char *ssid =  "Allt bra";     // replace with your wifi ssid and wpa2 key
 const char *pass =  "Sweden1!";
 const char* server = "api.thingspeak.com";
 
-#define DHTPIN 3       //pin where the dht11 is connected
+#define DHTPIN 2       //On NodeMCU, this works with dht11 plugged into D4
 
 DHT dht(DHTPIN, DHT11);
+
+#include <FlowMeter.h>  // https://github.com/sekdiy/FlowMeter
+
+// connect a flow meter to an interrupt pin (see notes on your Arduino model for pin numbers)
+FlowMeter Meter = FlowMeter(16);// pin 16 (D0) 
+
+// set the measurement update period to 1s (1000 ms)
+const unsigned long period = 1000;
+
 
 WiFiClient client;
 void setup()
 {
-  Serial.println("Pre setup done ");
-
   Serial.begin(115200);
   delay(10);
   dht.begin();
@@ -49,7 +50,7 @@ void setup()
   }
   Serial.println("");
   Serial.println("WiFi connected");
-
+  Meter.reset();
 }
 
 void loop()
@@ -94,6 +95,9 @@ void loop()
     Serial.println("%. Send to Thingspeak.");
   }
   client.stop();
+
+  Meter.tick(period);
+   Serial.println("Currently " + String(Meter.getCurrentFlowrate()) + " l/min, " + String(Meter.getTotalVolume())+ " l total.");
 
   Serial.println("Waiting...");
 

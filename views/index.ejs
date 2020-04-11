@@ -42,6 +42,36 @@
                               </h2>
                             </td>
                           </tr>
+
+                      <tr>
+                        <td>
+                          <h2 class="ui center aligned header"> Flow Rate (Liters/minutes): </h2>
+                        </td>
+                        
+                        <td>
+                            <h2 class="ui center aligned header"><span><%= water_data['flow_rate'] %> L/sec</span> </h2>
+                        </td>
+                        <td>
+                          <h2>
+                            <span><%= moment(data[3]).fromNow() %></span> 
+                          </h2>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <h2 class="ui center aligned header"> Total Volume (Liters): </h2>
+                        </td>
+                        
+                        <td>
+                            <h2 class="ui center aligned header"><span><%= water_data['total_volume'] %> L</span> </h2>
+                        </td>
+                        <td>
+                          <h2>
+                            <span><%= moment(data[3]).fromNow() %></span> 
+                          </h2>
+                        </td>
+                      </tr>
                     </tbody>
             </table>
     </div>
