@@ -12,6 +12,7 @@
                       <tr>
                         <th class="single line">Measured </th>
                         <th>Current Value</th>
+                        <th>Last reading</th>
                     </tr></thead>
                     <tbody>
                       <tr>
@@ -20,7 +21,10 @@
                         </td>
                         
                         <td>
-                            <h2 class="ui center aligned header"><span><%= data[0] %></span> <span><%= moment(data[1]).fromNow() %></span> </h2>
+                            <h2 class="ui center aligned header"><span><%= data[0] %></span>Celcius </h2>
+                        </td>
+                        <td>
+                            <h2><span><%= moment(data[1]).fromNow() %></span> </h2> 
                         </td>
                       </tr>
                       
@@ -30,7 +34,12 @@
                             </td>
                             
                             <td>
-                                <h2 class="ui center aligned header"><span><%= Math.floor(data[2]) %></span>% <span><%= moment(data[3]).fromNow() %></span> </h2>
+                                <h2 class="ui center aligned header"><span><%= Math.floor(data[2]) %></span>% </h2>
+                            </td>
+                            <td>
+                              <h2>
+                                <span><%= moment(data[3]).fromNow() %></span> 
+                              </h2>
                             </td>
                           </tr>
                     </tbody>
