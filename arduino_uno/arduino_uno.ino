@@ -1,7 +1,4 @@
 
-
-// Robo India Tutorial
-// Simple code upload the tempeature and humidity data using thingspeak.com
 // Hardware: NodeMCU,DHT11
 //DHT11 pin 1 (leftmost) in esp's Vin
 //DHT11 pin 2 to arduino
@@ -13,8 +10,7 @@
 //AT+CWLAP # lists all wifi available 
 //AT+CWJAP="<wifi name>","<pw>" # returns WIFI CONNETED \n WIFI GOT IP OK
 
-//Need to upload with tx rx disconnected, connect after 
-
+//!!!!!!  1!!!! Need to upload with tx rx disconnected, connect after 
 
 #include <FlowMeter.h>  // https://github.com/sekdiy/FlowMeter
 #include <DHT.h>
@@ -103,6 +99,8 @@ void loop(){
   Serial.println(flow_rate);
   Serial.print("total: ");
   Serial.println(total_vol);
+
+  
   Serial.println();
   Serial.println("-------------------------------------");
   Serial.println("Waiting not to overload thingspeak...");
@@ -145,8 +143,6 @@ void sendtemp(){
   }
 }
 
-
-
 boolean connectWiFi(){
   Serial.println("AT+CWMODE=1"); // sets to wifi search (2 is AP)
   delay(2000);
@@ -162,4 +158,9 @@ boolean connectWiFi(){
   }else{
     return false;
   }
+}
+
+void MeterISR() { // useless for now, allows to use swtich to turn on and off the meter
+    // let our flow meter count the pulses
+    Meter.count();
 }
