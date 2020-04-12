@@ -66,8 +66,5 @@ app.get('/', function(req, res) {
   });
   res.render('index', {data:data,water_data:water_data});
 });
-
-
-
 // app.listen(process.env.PORT, process.env.IP);
 app.listen(3000);
