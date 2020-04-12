@@ -5,3 +5,8 @@ form{
 .center_text{
     text-align: center;  
 }
+
+table.fixed {
+    table-layout: fixed;
+    width: 500px;  
+  }
