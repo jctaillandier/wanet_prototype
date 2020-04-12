@@ -69,5 +69,5 @@ app.get('/', function(req, res) {
 
 
 
-app.listen(process.env.PORT, process.env.IP);
-//app.listen(3000);
+// app.listen(process.env.PORT, process.env.IP);
+app.listen(3000);

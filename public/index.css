@@ -6,7 +6,8 @@ form{
     text-align: center;  
 }
 
-table.fixed {
+.fixed {
     table-layout: fixed;
-    width: 500px;  
+    width: 600px; 
+    height: 250px; 
   }
