@@ -5,12 +5,13 @@
 //DHT11 pin 3 not connected
 //DHT11 pin 4 to esp's GND
 
-
+//ESP8266 wifi shield
 //AT+CWMODE=2 , =1 for wifi mode # To setp to AP mode
 //AT+CWLAP # lists all wifi available 
 //AT+CWJAP="<wifi name>","<pw>" # returns WIFI CONNETED \n WIFI GOT IP OK
+// https://www.instructables.com/id/Arduino-IOT-Temperature-and-Humidity-With-ESP8266-/
 
-//!!!!!!  1!!!! Need to upload with tx rx disconnected, connect after 
+//!!!!!!  !!!! Need to upload code with tx rx disconnected, connect after 
 
 #include <FlowMeter.h>  // https://github.com/sekdiy/FlowMeter
 #include <DHT.h>
