@@ -132,11 +132,10 @@ void sendtemp(){
     postStr += String(flow_rate);
     postStr += "&field4=";
     postStr += String(total_vol);
-    postStr += "\r\n";
   Serial.print("AT+CIPSEND=");
   Serial.println(postStr.length());
   if(Serial.find(">")){
-    Serial.print(postStr);
+    Serial.println(postStr);
   }
   else{
     Serial.println("AT+CIPCLOSE");
